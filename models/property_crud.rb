@@ -39,6 +39,20 @@ class PropertyCrud
     db.close()
   end
 
+  def PropertyCrud.all()
+    db = PG.connect({dbname: 'property_tracker', host: 'localhost'})
+
+    sql ="SELECT * FROM property_tracker"
+
+    db.prepare("all", sql)
+    properties = db.exec_prepared("all")
+
+    db.close()
+    return properties.map {|prop| PropertyCrud.new(prop)}
+  end
+
+
+
   def update()
     db = PG.connect({dbname: 'property_tracker', host: 'localhost'})
 
@@ -59,6 +73,19 @@ class PropertyCrud
     db.exec_prepared("update", values)
     db.close
   end
+
+  def delete()
+    db = PG.connect(dbname: 'property_tracker', host: 'localhost')
+
+    sql = "DELETE FROM property_tracker WHERE id = $1"
+
+    value = [@id]
+
+    db.prepare("delete", sql)
+    db.exec_prepared("delete", value)
+    db.close()
+  end
+
 
 
 
