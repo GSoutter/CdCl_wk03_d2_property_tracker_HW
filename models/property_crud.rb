@@ -86,6 +86,43 @@ class PropertyCrud
     db.close()
   end
 
+  def PropertyCrud.find(id)
+
+    db = PG.connect(dbname: 'property_tracker', host: 'localhost')
+
+    sql = "SELECT * FROM property_tracker WHERE id = $1"
+    value = [id]
+
+    db.prepare('find_by_id', sql)
+    result = db.exec_prepared('find_by_id', value)
+    db.close()
+
+    # return PropertyCrud.new(result)
+    return result.map{|res| PropertyCrud.new(res)}
+  end
+
+  def PropertyCrud.find_by_address(address)
+
+    db = PG.connect(dbname: 'property_tracker', host: 'localhost')
+
+    sql = "SELECT * FROM property_tracker WHERE address = $1"
+    value = [address]
+
+    db.prepare('find_by_address', sql)
+    result = db.exec_prepared('find_by_address', value)
+    db.close()
+    
+
+    res_map = result.map{|res| PropertyCrud.new(res)}
+
+    return res_map[0]
+
+
+  end
+
+
+
+
 
 
 

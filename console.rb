@@ -22,6 +22,13 @@ property1.address = 'elm street'
 
 property1.update()
 
+
 property1.delete()
 
+found=  PropertyCrud.find(2)[0]
+
+p found.address
+
+p PropertyCrud.find_by_address('1, France Drive')
+p PropertyCrud.find_by_address('1, Fance Drive')
 #p PropertyCrud.all()
