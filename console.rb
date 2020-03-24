@@ -14,4 +14,6 @@ property2 = PropertyCrud.new({'address'=> 'Mullholand Drive',
                             'build' => 'semi-detached'})
 
 
+
 property1.save()
+property2.save()

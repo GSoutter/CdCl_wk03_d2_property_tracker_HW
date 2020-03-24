@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS property_tracker
+DROP TABLE IF EXISTS property_tracker;
 
 CREATE TABLE property_tracker (
   id SERIAL PRIMARY KEY,
@@ -6,4 +6,4 @@ CREATE TABLE property_tracker (
   value INT,
   bedrooms INT,
   build VARCHAR(255)
-)
+);
