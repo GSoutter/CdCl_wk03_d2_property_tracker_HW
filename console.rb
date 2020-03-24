@@ -16,4 +16,8 @@ property2 = PropertyCrud.new({'address'=> 'Mullholand Drive',
 
 
 property1.save()
-property2.save()
+#property2.save()
+
+property1.address = 'elm street'
+
+property1.update()
